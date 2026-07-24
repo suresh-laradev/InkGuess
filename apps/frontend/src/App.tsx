@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { useGameStore } from './store/useGameStore';
 import { socketService } from './sockets/socketService';
 import Lobby from './components/Lobby';
+import { GameBoard } from './components/GameBoard';
 
 const App = () => {
   const roomCode = useGameStore((state)=> state.roomCode)
@@ -18,6 +19,7 @@ const App = () => {
     if(savedCode && savedName && savedToken){
       useGameStore.getState().setPlayerName(savedName);
       useGameStore.getState().setRoomCode(savedCode);
+      socketService.joinRoom(savedCode,savedName,savedToken)
     }
 
     return()=>{
@@ -35,7 +37,7 @@ const App = () => {
       justifyContent: 'center',
       boxSizing: 'border-box'
     }}>
-      {roomCode === null ? <Lobby/>: <>gameboard component</>}
+      {roomCode === null ? <Lobby/>: <GameBoard/>}
     </div>
   )
 }

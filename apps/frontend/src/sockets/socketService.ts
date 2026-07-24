@@ -13,10 +13,16 @@ class SocketService {
             autoConnect: true,
         });
 
-        this.socket.on('connect', ()=>{
+        this.socket.on('connect', () => {
             console.log('Socket connected: ',this.socket?.id);
             if(this.socket?.id){
                 useGameStore.getState().setPlayerId(this.socket.id);
+                
+                const { roomCode, playerName } = useGameStore.getState();
+                const sessionToken = sessionStorage.getItem('inkguess_session_token');
+                if (roomCode && playerName) {
+                    this.joinRoom(roomCode, playerName, sessionToken || undefined);
+                }
             }
         });
 

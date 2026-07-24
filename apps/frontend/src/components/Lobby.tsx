@@ -27,7 +27,7 @@ const Lobby: React.FC = () => {
             const code = response.roomCode;
             setPlayerName(nameInput.trim());
             setRoomCode(code);
-            socketService.joinRoom(code,nameInput.trim());
+            socketService.joinRoom(code, nameInput.trim());
         } catch (error: any) {
             setError(error.response?.data?.message || "Failed to create room. Please try again.")
         }
@@ -50,7 +50,7 @@ const Lobby: React.FC = () => {
             const code = codeInput.trim().toUpperCase();
             const res = await checkRoomExists(code);
 
-            if(!res.exists){
+            if(res.exists){
                 setPlayerName(nameInput.trim());
                 setRoomCode(code);
                 socketService.joinRoom(code,nameInput.trim());
@@ -120,9 +120,9 @@ const Lobby: React.FC = () => {
                     color: 'var(--text-muted)',
                     fontSize: '0.85rem'
                 }}>
-                    <span style={{width: '40px',height: '1px', background: 'rgba(255,255,255,0.1'}}></span>
+                    <span style={{width: '40px',height: '1px', background: 'rgba(255,255,255,0.1)'}}></span>
                     OR JOIN EXISTING
-                    <span style={{width: '40px',height: '1px', background: 'rgba(255,255,255,0.1'}}></span>
+                    <span style={{width: '40px',height: '1px', background: 'rgba(255,255,255,0.1)'}}></span>
                 </div>
 
                 <form onSubmit={handleJoinRoom} style={{ display: 'flex', gap: '0.5rem'}}>

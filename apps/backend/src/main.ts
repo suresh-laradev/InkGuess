@@ -6,7 +6,7 @@ async function bootstrap() {
   // Enable CORS for frontend clients
   app.enableCors({
     origin: "*",
-    methods: 'GET,HEAD,PUT,PATCH,DELETE,OPTIONS',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
     credentials: true,
   });
   const port = process.env.PORT || 3000;

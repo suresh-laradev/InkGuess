@@ -41,7 +41,7 @@ export interface GameState {
     setCanvasStrokes: (strokes: StrokeData[]) => void;
     addStroke: (stroke: StrokeData) => void;
     clearCanvas: () => void;
-    resetCanvas: () => void;
+    resetStore: () => void;
 }
 
 export interface ChatMessage {
@@ -127,7 +127,7 @@ export const useGameStore = create<GameState>((set)=>({
         canvasStrokes: [...state.canvasStrokes,stroke] 
     })),
     clearCanvas: () => set({canvasStrokes: []}),
-    resetCanvas: () => {
+    resetStore: () => {
         sessionStorage.removeItem('inkguess_session_token');
         sessionStorage.removeItem('inkguess_room_code');
         sessionStorage.removeItem('inkguess_player_name');
